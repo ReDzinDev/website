@@ -2,9 +2,23 @@ import type { Express } from "express";
 import { createServer } from "http";
 import { storage } from "./storage";
 import { insertMessageSchema, insertBlogPostSchema, insertProjectSchema } from "@shared/schema";
+import fs from "fs/promises";
+import path from "path";
 
 export async function registerRoutes(app: Express) {
   const httpServer = createServer(app);
+
+  // Theme update endpoint
+  app.post("/api/theme", async (req, res) => {
+    try {
+      const themeFilePath = path.resolve(process.cwd(), "theme.json");
+      await fs.writeFile(themeFilePath, JSON.stringify(req.body, null, 2));
+      res.json({ message: "Theme updated successfully" });
+    } catch (error) {
+      console.error("Failed to update theme:", error);
+      res.status(500).json({ message: "Failed to update theme" });
+    }
+  });
 
   // Blog routes
   app.get("/api/blog", async (_req, res) => {

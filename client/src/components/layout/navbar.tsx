@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
+import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 
 export function Navbar() {
   const isMobile = useIsMobile();
@@ -35,18 +36,21 @@ export function Navbar() {
           </Button>
         </Link>
 
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <div className="flex flex-col space-y-4 mt-8">
-              <NavLinks />
-            </div>
-          </SheetContent>
-        </Sheet>
+        <div className="flex items-center gap-2">
+          <ThemeSwitcher />
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <div className="flex flex-col space-y-4 mt-8">
+                <NavLinks />
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
     );
   }
@@ -60,6 +64,7 @@ export function Navbar() {
       </Link>
       <div className="flex items-center space-x-2">
         <NavLinks />
+        <ThemeSwitcher />
       </div>
     </nav>
   );
