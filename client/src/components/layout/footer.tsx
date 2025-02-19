@@ -1,5 +1,6 @@
-import { SiDiscord, SiTelegram, SiX } from "react-icons/si";
+import { SiDiscord, SiTelegram, SiX, SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/button";
+import { FileText } from "lucide-react";
 
 export function Footer() {
   const socialLinks = [
@@ -17,6 +18,11 @@ export function Footer() {
       icon: SiX,
       label: "X (Twitter)",
       href: "#", // Replace with your Twitter profile
+    },
+    {
+      icon: SiLinkedin,
+      label: "LinkedIn",
+      href: "#", // Replace with your LinkedIn profile
     },
   ];
 
@@ -39,6 +45,15 @@ export function Footer() {
                 </Button>
               </a>
             ))}
+            <a
+              href="/resume" // We'll create this route next
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Button variant="ghost" size="icon">
+                <FileText className="h-5 w-5" />
+                <span className="sr-only">Resume</span>
+              </Button>
+            </a>
           </div>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Portfolio. All rights reserved.

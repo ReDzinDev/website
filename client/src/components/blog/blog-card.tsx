@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "lucide-react";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import type { BlogPost } from "@shared/schema";
 import { Link } from "wouter";
 
@@ -10,6 +10,10 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post }: BlogCardProps) {
+  const formattedDate = post.createdAt 
+    ? format(new Date(post.createdAt), "MMMM d, yyyy")
+    : "No date";
+
   return (
     <Link href={`/blog/${post.slug}`}>
       <Card className="cursor-pointer hover:shadow-lg transition-shadow">
@@ -17,9 +21,7 @@ export function BlogCard({ post }: BlogCardProps) {
           <CardTitle>{post.title}</CardTitle>
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
             <Calendar className="h-4 w-4" />
-            <time dateTime={post.createdAt?.toISOString()}>
-              {post.createdAt ? format(new Date(post.createdAt), "MMMM d, yyyy") : "No date"}
-            </time>
+            <time>{formattedDate}</time>
           </div>
         </CardHeader>
         <CardContent>
