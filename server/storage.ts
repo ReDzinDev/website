@@ -50,9 +50,23 @@ export class MemStorage implements IStorage {
       {
         title: "Getting Started with React",
         slug: "getting-started-with-react",
-        content: "# Introduction\nReact is a popular JavaScript library...",
+        content: `# Getting Started with React
+
+## Introduction
+React is a popular JavaScript library for building user interfaces. In this guide, we'll explore the basics of React and learn how to create modern web applications.
+
+## Prerequisites
+- Basic knowledge of HTML, CSS, and JavaScript
+- Node.js installed on your computer
+- A code editor (VS Code recommended)
+
+## Setting Up Your First React Project
+Let's start by creating a new React project using Create React App...`,
         excerpt: "Learn the basics of React and start building modern web applications.",
-        published: true
+        published: true,
+        author: "John Doe",
+        authorTitle: "Senior Frontend Developer",
+        authorAvatar: "https://github.com/shadcn.png"
       }
     ];
 

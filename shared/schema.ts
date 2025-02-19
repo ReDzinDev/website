@@ -8,6 +8,9 @@ export const blogPosts = pgTable("blog_posts", {
   slug: text("slug").notNull().unique(),
   content: text("content").notNull(),
   excerpt: text("excerpt").notNull(),
+  author: text("author").notNull().default("John Doe"),
+  authorTitle: text("author_title").notNull().default("Full Stack Developer"),
+  authorAvatar: text("author_avatar"),
   published: boolean("published").default(true),
   createdAt: timestamp("created_at").defaultNow(),
 });

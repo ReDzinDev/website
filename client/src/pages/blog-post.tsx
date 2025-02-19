@@ -5,6 +5,8 @@ import { Calendar, Clock } from "lucide-react";
 import { format } from "date-fns";
 import { calculateReadingTime } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
   const { data: post, isLoading } = useQuery<BlogPost>({
@@ -39,7 +41,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   const formattedDate = post.createdAt
     ? format(new Date(post.createdAt), "MMMM d, yyyy")
     : "No date";
-  
+
   const readingTime = calculateReadingTime(post.content);
 
   return (
@@ -58,6 +60,20 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </header>
+
+        <div className="flex items-center space-x-4">
+          <Avatar>
+            <AvatarImage src={post.authorAvatar || undefined} />
+            <AvatarFallback>{post.author?.slice(0, 2).toUpperCase()}</AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="font-medium">{post.author}</p>
+            <p className="text-sm text-muted-foreground">{post.authorTitle}</p>
+          </div>
+        </div>
+
+        <Separator />
+
         <MarkdownContent content={post.content} />
       </article>
     </div>
